@@ -7,13 +7,24 @@
 //
 
 #import "AppDelegate.h"
+#import "HHRouter.h"
+#import "UserViewController.h"
+#import "StoryViewController.h"
+#import "StoryListViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //NSString *url = @"huohua://user/:userId/?a=bc&c=d";
+    NSString *url = @"/user/:userId/?a=bc&c=d";
+    NSLog(@"%@", url.pathComponents);
+    
+    [[HHRouter shared] map:@"/user/:userId/" toControllerClass:[UserViewController class]];
+    [[HHRouter shared] map:@"/story/:storyId/" toControllerClass:[StoryViewController class]];
+    [[HHRouter shared] map:@"/user/:userId/story/" toControllerClass:[StoryListViewController class]];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

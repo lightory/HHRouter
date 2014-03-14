@@ -10,6 +10,6 @@
 
 @interface HHRouter : NSObject
 + (instancetype)shared;
-- (void)map:(NSString *)pattern toViewControllerClass:(Class)viewControllerClass;
-- (UIViewController *)match:(NSString *)pattern;
+- (void)map:(NSString *)route toControllerClass:(Class)controllerClass;
+- (UIViewController *)match:(NSString *)route;
 @end

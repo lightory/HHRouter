@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 #import "HHRouter.h"
+#import "UserViewController.h"
+#import "StoryViewController.h"
+#import "StoryListViewController.h"
 
 @interface HHRouterTests : XCTestCase
 
@@ -18,19 +21,28 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
 - (void)testShared
 {
-    XCTAssertTrue([[HHRouter shared] isKindOfClass:[HHRouter class]], @"[HHRouter shared] doesn't return a HHRouter instance.");
-    XCTAssertTrue([[HHRouter shared] isEqual:[HHRouter shared]], @"[HHRouter shared] doesn't return a shared instance.");
+    XCTAssertTrue([[HHRouter shared] isKindOfClass:[HHRouter class]]);
+    XCTAssertTrue([[HHRouter shared] isEqual:[HHRouter shared]]);
+}
+
+- (void)testRoute
+{
+    [[HHRouter shared] map:@"/user/:userId/" toControllerClass:[UserViewController class]];
+    [[HHRouter shared] map:@"/story/:storyId/" toControllerClass:[StoryViewController class]];
+    [[HHRouter shared] map:@"/user/:userId/story/" toControllerClass:[StoryListViewController class]];
+    
+    XCTAssertTrue([[[HHRouter shared] match:@"/user/1/"] isKindOfClass:[UserViewController class]]);
+    XCTAssertTrue([[[HHRouter shared] match:@"/story/2/"] isKindOfClass:[StoryViewController class]]);
+    XCTAssertTrue([[[HHRouter shared] match:@"/user/1/story/"] isKindOfClass:[StoryListViewController class]]);
 }
 
 @end

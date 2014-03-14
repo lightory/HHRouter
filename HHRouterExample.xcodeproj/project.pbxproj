@@ -21,6 +21,12 @@
 		A02D399718D1B25500291FE9 /* HHRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D399618D1B25500291FE9 /* HHRouter.m */; };
 		A02D399818D1B25500291FE9 /* HHRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D399618D1B25500291FE9 /* HHRouter.m */; };
 		A02D399A18D1B34500291FE9 /* HHRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D399918D1B34500291FE9 /* HHRouterTests.m */; };
+		A02D399E18D2D9F100291FE9 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D399D18D2D9F100291FE9 /* UserViewController.m */; };
+		A02D399F18D2D9F100291FE9 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D399D18D2D9F100291FE9 /* UserViewController.m */; };
+		A02D39A218D2DA0200291FE9 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D39A118D2DA0200291FE9 /* StoryViewController.m */; };
+		A02D39A318D2DA0200291FE9 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D39A118D2DA0200291FE9 /* StoryViewController.m */; };
+		A02D39A618D2DA3F00291FE9 /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D39A518D2DA3F00291FE9 /* StoryListViewController.m */; };
+		A02D39A718D2DA3F00291FE9 /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D39A518D2DA3F00291FE9 /* StoryListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +58,12 @@
 		A02D399518D1B25500291FE9 /* HHRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHRouter.h; sourceTree = "<group>"; };
 		A02D399618D1B25500291FE9 /* HHRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHRouter.m; sourceTree = "<group>"; };
 		A02D399918D1B34500291FE9 /* HHRouterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHRouterTests.m; sourceTree = "<group>"; };
+		A02D399C18D2D9F100291FE9 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		A02D399D18D2D9F100291FE9 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		A02D39A018D2DA0200291FE9 /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
+		A02D39A118D2DA0200291FE9 /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
+		A02D39A418D2DA3F00291FE9 /* StoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryListViewController.h; sourceTree = "<group>"; };
+		A02D39A518D2DA3F00291FE9 /* StoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +128,12 @@
 				A02D397518D1B21F00291FE9 /* AppDelegate.m */,
 				A02D397718D1B21F00291FE9 /* Images.xcassets */,
 				A02D396C18D1B21F00291FE9 /* Supporting Files */,
+				A02D399C18D2D9F100291FE9 /* UserViewController.h */,
+				A02D399D18D2D9F100291FE9 /* UserViewController.m */,
+				A02D39A018D2DA0200291FE9 /* StoryViewController.h */,
+				A02D39A118D2DA0200291FE9 /* StoryViewController.m */,
+				A02D39A418D2DA3F00291FE9 /* StoryListViewController.h */,
+				A02D39A518D2DA3F00291FE9 /* StoryListViewController.m */,
 			);
 			path = HHRouterExample;
 			sourceTree = "<group>";
@@ -254,6 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A02D397618D1B21F00291FE9 /* AppDelegate.m in Sources */,
+				A02D399E18D2D9F100291FE9 /* UserViewController.m in Sources */,
+				A02D39A618D2DA3F00291FE9 /* StoryListViewController.m in Sources */,
+				A02D39A218D2DA0200291FE9 /* StoryViewController.m in Sources */,
 				A02D397218D1B21F00291FE9 /* main.m in Sources */,
 				A02D399718D1B25500291FE9 /* HHRouter.m in Sources */,
 			);
@@ -263,6 +284,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A02D39A318D2DA0200291FE9 /* StoryViewController.m in Sources */,
+				A02D399F18D2D9F100291FE9 /* UserViewController.m in Sources */,
+				A02D39A718D2DA3F00291FE9 /* StoryListViewController.m in Sources */,
 				A02D399818D1B25500291FE9 /* HHRouter.m in Sources */,
 				A02D399A18D1B34500291FE9 /* HHRouterTests.m in Sources */,
 			);
