@@ -45,7 +45,7 @@
 - (UIViewController *)match:(NSString *)route
 {
     NSMutableDictionary *subRoutes = self.routes;
-    for (NSString *pathComponent in [self pathComponentsFromRoute:route]) {
+    for (NSString *pathComponent in [self pathComponentsFromRoute:[self stringFromFilterAppUrlScheme:route]]) {
         BOOL found = NO;
         NSArray *subRoutesKeys = subRoutes.allKeys;
         for (NSString *key in subRoutesKeys) {
@@ -53,7 +53,7 @@
                 found = YES;
                 subRoutes = subRoutes[key];
                 break;
-            } else if ([[key substringToIndex:1] isEqualToString:@":"]) {
+            } else if ([key hasPrefix:@":"]) {
                 found = YES;
                 subRoutes = subRoutes[key];
                 break;
@@ -86,6 +86,30 @@
     }
     
     return [pathComponents copy];
+}
+
+- (NSString *)stringFromFilterAppUrlScheme:(NSString *)string
+{
+    for (NSString *appUrlScheme in [self appUrlSchemes]) {
+        if ([string hasPrefix:[NSString stringWithFormat:@"%@:", appUrlScheme]]) {
+            return [string substringFromIndex:appUrlScheme.length + 1];
+        }
+    }
+    
+    return string;
+}
+
+- (NSArray *)appUrlSchemes
+{
+    NSMutableArray *appUrlSchemes = [NSMutableArray array];
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    for (NSDictionary *dic in infoDictionary[@"CFBundleURLTypes"]) {
+        NSString *appUrlScheme = dic[@"CFBundleURLSchemes"][0];
+        [appUrlSchemes addObject:appUrlScheme];
+    }
+    
+    return [appUrlSchemes copy];
 }
 
 @end

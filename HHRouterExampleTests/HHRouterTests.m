@@ -43,6 +43,8 @@
     XCTAssertTrue([[[HHRouter shared] match:@"/user/1/"] isKindOfClass:[UserViewController class]]);
     XCTAssertTrue([[[HHRouter shared] match:@"/story/2/"] isKindOfClass:[StoryViewController class]]);
     XCTAssertTrue([[[HHRouter shared] match:@"/user/1/story/"] isKindOfClass:[StoryListViewController class]]);
+    
+    XCTAssertTrue([[[HHRouter shared] match:@"hhrouter://user/1/"] isKindOfClass:[UserViewController class]]);
 }
 
 @end
