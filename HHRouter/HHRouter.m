@@ -48,7 +48,8 @@
     params[@"route"] = [self stringFromFilterAppUrlScheme:route];
     
     NSMutableDictionary *subRoutes = self.routes;
-    for (NSString *pathComponent in [self pathComponentsFromRoute:[self stringFromFilterAppUrlScheme:route]]) {
+    NSArray *pathComponents = [self pathComponentsFromRoute:[self stringFromFilterAppUrlScheme:route]];
+    for (NSString *pathComponent in pathComponents) {
         BOOL found = NO;
         NSArray *subRoutesKeys = subRoutes.allKeys;
         for (NSString *key in subRoutesKeys) {
@@ -64,6 +65,21 @@
             }
         }
         if (!found) return nil;
+    }
+    
+    // Extract Params From Query.
+    NSArray *pathInfo = [route componentsSeparatedByString:@"?"];
+    if (pathInfo.count > 1) {
+        NSString *paramsString = [pathInfo objectAtIndex:1];
+        NSArray *paramStringArr = [paramsString componentsSeparatedByString:@"&"];
+        for (NSString *paramString in paramStringArr) {
+            NSArray *paramArr = [paramString componentsSeparatedByString:@"="];
+            if (paramArr.count > 1) {
+                NSString *key = [paramArr objectAtIndex:0];
+                NSString *value = [paramArr objectAtIndex:1];
+                params[key] = value;
+            }
+        }
     }
     
     Class controllerClass = subRoutes[@"_"];

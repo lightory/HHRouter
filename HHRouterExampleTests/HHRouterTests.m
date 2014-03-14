@@ -46,9 +46,11 @@
     
     XCTAssertEqualObjects([[[HHRouter shared] match:@"hhrouter://user/1/"] class], [UserViewController class]);
     
-    UserViewController *userViewController = (UserViewController *) [[HHRouter shared] match:@"/user/1/"];
-    XCTAssertEqualObjects(userViewController.params[@"route"], @"/user/1/");
+    UserViewController *userViewController = (UserViewController *) [[HHRouter shared] match:@"/user/1/?a=b&c=d"];
+    XCTAssertEqualObjects(userViewController.params[@"route"], @"/user/1/?a=b&c=d");
     XCTAssertEqualObjects(userViewController.params[@"userId"], @"1");
+    XCTAssertEqualObjects(userViewController.params[@"a"], @"b");
+    XCTAssertEqualObjects(userViewController.params[@"c"], @"d");
 }
 
 @end
