@@ -44,6 +44,9 @@
 
 - (UIViewController *)match:(NSString *)route
 {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"route"] = [self stringFromFilterAppUrlScheme:route];
+    
     NSMutableDictionary *subRoutes = self.routes;
     for (NSString *pathComponent in [self pathComponentsFromRoute:[self stringFromFilterAppUrlScheme:route]]) {
         BOOL found = NO;
@@ -56,6 +59,7 @@
             } else if ([key hasPrefix:@":"]) {
                 found = YES;
                 subRoutes = subRoutes[key];
+                params[[key substringFromIndex:1]] = pathComponent;
                 break;
             }
         }
@@ -64,6 +68,9 @@
     
     Class controllerClass = subRoutes[@"_"];
     UIViewController *viewController = [[controllerClass alloc] init];
+    if ([viewController respondsToSelector:@selector(setParams:)]) {
+        [viewController performSelector:@selector(setParams:) withObject:[params copy]];
+    }
     return viewController;
 }
 
