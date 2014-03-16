@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "Light" => "lightory@gmail.com" }
   s.platform     = :ios, '5.0'
-  s.source       = { :git => "https://github.com/Huohua/HHRouter/", :commit => '88944c659c31f38d3947bc3e261f7cb201c43343' }
-  s.source_files  = 'HHRouter.h,m' 
+  s.source       = { :git => "https://github.com/Huohua/HHRouter.git", :commit => '88944c659c31f38d3947bc3e261f7cb201c43343' }
+  s.source_files  = 'HHRouter/*' 
   s.requires_arc = true
 end
