@@ -22,11 +22,12 @@ Define a `NSDictionary` property named `params` in viewControllers. Better in yo
 ### Exciting Time
 Get viewController Instance from URL. Params will be automatic parsed.
 
-```objective-c
+```objective
 UIViewController *viewController = [HHRouter shared] match:@"/user/1/"];
+XCTAssertEqualObjects([viewController class], [UserViewController class]);
+XCTAssertEqualObjects(viewController.params[@"route"], @"/user/1/");
+XCTAssertEqualObjects(viewController.params[@"userId"], @"1");
 ```
-
-`viewController` will be an instance of UserViewController. And `viewController.params` will be `@{ @"route": @"/user/1/", @"userId": @"1"}`.
 
 ### URL Query Params
 
@@ -34,15 +35,16 @@ URL Query Params is also supported. This will make things VERY flexable.
 
 ```objective-c
 UIViewController *viewController = [HHRouter shared] match:@"/user/1/?tabIndex=3"];
+XCTAssertEqualObjects(viewController.params[@"tabIndex"], @"3");
 ```
-
-`viewController.params[@"tabIndex"]` would be `3`.
 
 ### One More Thing
 
 If your app has defined some url schemes, HHRouter will know.
 
-In the HHRouterExample Project, `hhrouter://user/1/` and `/user/1/` map to the same UIViewController.
+```objective-c
+XCTAssertEqualObjects([[[HHRouter shared] match:@"hhrouter://user/1/"] class], [UserViewController class]);
+```
 
 ## Installation
 ### [CocoaPods](http://cocoapods.org/)
