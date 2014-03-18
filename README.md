@@ -22,8 +22,11 @@ Define a `NSDictionary` property named `params` in viewControllers. Better in yo
 ### Exciting Time
 Get viewController Instance from URL. Params will be automatic parsed.
 
-```objective
+```objective-c
 UIViewController *viewController = [HHRouter shared] match:@"/user/1/"];
+```
+
+```objective-c
 XCTAssertEqualObjects([viewController class], [UserViewController class]);
 XCTAssertEqualObjects(viewController.params[@"route"], @"/user/1/");
 XCTAssertEqualObjects(viewController.params[@"userId"], @"1");
@@ -35,6 +38,9 @@ URL Query Params is also supported. This will make things VERY flexable.
 
 ```objective-c
 UIViewController *viewController = [HHRouter shared] match:@"/user/1/?tabIndex=3"];
+```
+
+```objective-c
 XCTAssertEqualObjects(viewController.params[@"tabIndex"], @"3");
 ```
 
@@ -43,7 +49,11 @@ XCTAssertEqualObjects(viewController.params[@"tabIndex"], @"3");
 If your app has defined some url schemes, HHRouter will know.
 
 ```objective-c
-XCTAssertEqualObjects([[[HHRouter shared] match:@"hhrouter://user/1/"] class], [UserViewController class]);
+UIViewController *viewController = [[HHRouter shared] match:@"hhrouter://user/1/"];
+```
+
+```objective-c
+XCTAssertEqualObjects([viewController class], [UserViewController class]);
 ```
 
 ## Installation
@@ -62,6 +72,11 @@ If you're not able to use CocoaPods, please install HHRouter as a [git submodule
 ## Contact
 - [lightory@gmail.com](mailto:lightory@gmail.com)
 - [http://twitter.com/lightory/](http://twitter.com/lightory/)
+
+## Who use HHRouter?
+If you're building your applications using HHRouter, please let me know! (add your application name & App Store link here and pull reuqest this README.
+
+- 火花: [https://itunes.apple.com/cn/app/huo-hua-dian-shi-ju/id584296227?mt=8](https://itunes.apple.com/cn/app/huo-hua-dian-shi-ju/id584296227?mt=8)
 
 ## License
 HHRouter is available under the [MIT license](https://github.com/Huohua/HHRouter/blob/master/LICENSE).
