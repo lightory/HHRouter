@@ -23,7 +23,7 @@ Define a `NSDictionary` property named `params` in viewControllers. Better in yo
 Get viewController Instance from URL. Params will be automatic parsed.
 
 ```objective-c
-UIViewController *viewController = [HHRouter shared] match:@"/user/1/"];
+UIViewController *viewController = [[HHRouter shared] match:@"/user/1/"];
 ```
 
 ```objective-c
@@ -37,7 +37,7 @@ XCTAssertEqualObjects(viewController.params[@"userId"], @"1");
 URL Query Params is also supported. This will make things VERY flexable.
 
 ```objective-c
-UIViewController *viewController = [HHRouter shared] match:@"/user/1/?tabIndex=3"];
+UIViewController *viewController = [[HHRouter shared] match:@"/user/1/?tabIndex=3"];
 ```
 
 ```objective-c
