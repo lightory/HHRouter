@@ -1,6 +1,6 @@
 HHRouter
 =====
-Yet another URL Router for iOS. Clean, Fast & Flexable. Inspired by [ABRouter](https://github.com/aaronbrethorst/ABRouter) & [Routable for iOS](https://github.com/usepropeller/routable-ios).
+Yet another URL Router for iOS. Clean, Fast & Flexable. Inspired by [ABRouter](https://github.com/aaronbrethorst/ABRouter) & [Routable iOS](https://github.com/usepropeller/routable-ios).
 
 ## Usage
 
@@ -60,7 +60,7 @@ XCTAssertEqualObjects([viewController class], [UserViewController class]);
 ### [CocoaPods](http://cocoapods.org/)
 
 ```ruby
-pod 'HHRouter', :git => 'https://github.com/Huohua/HHRouter.git', :tag => '0.1'
+pod 'HHRouter', '0.1'
 ```
 
 ```objective-c
