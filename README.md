@@ -1,6 +1,6 @@
 HHRouter
 =====
-Yet another URL Router for iOS. Clean, Fast & Flexable. Inspired by [ABRouter](https://github.com/aaronbrethorst/ABRouter) & [Routable iOS](https://github.com/usepropeller/routable-ios).
+Yet another URL Router for iOS. Clean, Fast & Flexible. Inspired by [ABRouter](https://github.com/aaronbrethorst/ABRouter) & [Routable iOS](https://github.com/usepropeller/routable-ios).
 
 ## Usage
 
@@ -34,7 +34,7 @@ XCTAssertEqualObjects(viewController.params[@"userId"], @"1");
 
 ### URL Query Params
 
-URL Query Params is also supported. This will make things VERY flexable.
+URL Query Params is also supported, which will make things VERY flexible.
 
 ```objective-c
 UIViewController *viewController = [[HHRouter shared] match:@"/user/1/?tabIndex=3"];

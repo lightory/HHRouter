@@ -1,0 +1,2 @@
+language: objective-c
+script: xctool -project HHRouterExample.xcodeproj -scheme 'HHRouterExample' -configuration Release -sdk iphonesimulator7.0 -arch i386 build
