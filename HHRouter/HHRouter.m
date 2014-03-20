@@ -29,12 +29,13 @@
 
 + (instancetype)shared
 {
-    static HHRouter *router;
-    @synchronized(self) {
+    static HHRouter *router = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         if (!router) {
             router = [[self alloc] init];
         }
-    }
+    });
     return router;
 }
 
@@ -126,6 +127,7 @@
 
 - (NSString *)stringFromFilterAppUrlScheme:(NSString *)string
 {
+    //filter out the app URL compontents.
     for (NSString *appUrlScheme in [self appUrlSchemes]) {
         if ([string hasPrefix:[NSString stringWithFormat:@"%@:", appUrlScheme]]) {
             return [string substringFromIndex:appUrlScheme.length + 1];
