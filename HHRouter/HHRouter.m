@@ -20,6 +20,7 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import "HHRouter.h"
+#import <objc/runtime.h>
 
 @interface HHRouter ()
 @property (strong, nonatomic) NSMutableDictionary *routes;
@@ -53,7 +54,7 @@
         subRoutes = subRoutes[pathComponent];
         index++;
     }
-    return [subRoutes mutableCopy];
+    return subRoutes;
 }
 
 - (void)map:(NSString *)route toControllerClass:(Class)controllerClass
@@ -144,7 +145,7 @@
         }
     }
     
-    if ([subRoutes[@"_"] isKindOfClass:[UIViewController class]]) {
+    if (class_isMetaClass(object_getClass(subRoutes[@"_"]))) {
         params[@"controller_class"] = subRoutes[@"_"];
     } else {
         if (subRoutes[@"_"]) {
