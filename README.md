@@ -72,6 +72,9 @@ pod 'HHRouter', '0.1'
 
 If you're not able to use CocoaPods, please install HHRouter as a [git submodule](http://schacon.github.com/git/user-manual.html#submodules) and add the files to your Xcode project.
 
+## We're Hiring!
+[http://huohua.in/opportunity/](http://huohua.in/opportunity/)
+
 ## Contact
 - [lightory@gmail.com](mailto:lightory@gmail.com)
 - [http://twitter.com/lightory/](http://twitter.com/lightory/)
