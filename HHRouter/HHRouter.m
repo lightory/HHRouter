@@ -144,9 +144,13 @@
             }
         }
     }
-    
-    if (class_isMetaClass(object_getClass(subRoutes[@"_"]))) {
-        params[@"controller_class"] = subRoutes[@"_"];
+    Class class = subRoutes[@"_"];
+    if (class_isMetaClass(object_getClass(class))) {
+        if ([class isSubclassOfClass:[UIViewController class]]) {
+            params[@"controller_class"] = subRoutes[@"_"];
+        } else {
+            return nil;
+        }
     } else {
         if (subRoutes[@"_"]) {
             params[@"block"] = [subRoutes[@"_"] copy];
