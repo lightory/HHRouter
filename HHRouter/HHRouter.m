@@ -58,6 +58,20 @@
 
 - (UIViewController *)match:(NSString *)route
 {
+    NSDictionary *params = [self paramsInRoute:route];
+    Class controllerClass = params[@"controller_class"];
+    
+    UIViewController *viewController = [[controllerClass alloc] init];
+    if ([viewController respondsToSelector:@selector(setParams:)]) {
+        [viewController performSelector:@selector(setParams:) withObject:[params copy]];
+    }
+    return viewController;
+}
+
+
+//extract params in a route
+- (NSDictionary*)paramsInRoute:(NSString*)route
+{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"route"] = [self stringFromFilterAppUrlScheme:route];
     
@@ -96,12 +110,9 @@
         }
     }
     
-    Class controllerClass = subRoutes[@"_"];
-    UIViewController *viewController = [[controllerClass alloc] init];
-    if ([viewController respondsToSelector:@selector(setParams:)]) {
-        [viewController performSelector:@selector(setParams:) withObject:[params copy]];
-    }
-    return viewController;
+    params[@"controller_class"] = subRoutes[@"_"];
+    
+    return [params copy];
 }
 
 #pragma mark - Private
