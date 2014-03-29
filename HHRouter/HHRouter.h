@@ -23,9 +23,12 @@
 typedef id(^HHRouterBlock) (NSDictionary *parms);
 @interface HHRouter : NSObject
 + (instancetype)shared;
+
 - (void)map:(NSString *)route toControllerClass:(Class)controllerClass;
+- (UIViewController *)match:(NSString *)route __attribute__((deprecated));
+- (UIViewController *)matchController:(NSString*)route;
+
 - (void)map:(NSString *)route toBlock:(HHRouterBlock)block;
-- (UIViewController *)match:(NSString *)route;
 - (HHRouterBlock)matchBlock:(NSString*)route;
 - (id)callBlock:(NSString*)route;
 @end
