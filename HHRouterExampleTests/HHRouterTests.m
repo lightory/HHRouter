@@ -53,12 +53,12 @@
     [[HHRouter shared] map:@"/user/:userId/story/" toControllerClass:[StoryListViewController class]];
 
     
-    XCTAssertEqualObjects([[[HHRouter shared] match:@"/story/2/"] class], [StoryViewController class]);
-    XCTAssertEqualObjects([[[HHRouter shared] match:@"/user/1/story/"] class], [StoryListViewController class]);
+    XCTAssertEqualObjects([[[HHRouter shared] matchController:@"/story/2/"] class], [StoryViewController class]);
+    XCTAssertEqualObjects([[[HHRouter shared] matchController:@"/user/1/story/"] class], [StoryListViewController class]);
     
-    XCTAssertEqualObjects([[[HHRouter shared] match:@"hhrouter://user/1/"] class], [UserViewController class]);
+    XCTAssertEqualObjects([[[HHRouter shared] matchController:@"hhrouter://user/1/"] class], [UserViewController class]);
     
-    UserViewController *userViewController = (UserViewController *) [[HHRouter shared] match:@"/user/1/?a=b&c=d"];
+    UserViewController *userViewController = (UserViewController *) [[HHRouter shared] matchController:@"/user/1/?a=b&c=d"];
     XCTAssertEqualObjects(userViewController.params[@"route"], @"/user/1/?a=b&c=d");
     XCTAssertEqualObjects(userViewController.params[@"userId"], @"1");
     XCTAssertEqualObjects(userViewController.params[@"a"], @"b");
