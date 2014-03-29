@@ -40,36 +40,13 @@
     return router;
 }
 
-- (NSMutableDictionary*)subRoutesToRoute:(NSString*)route
-{
-    NSArray *pathComponents = [self pathComponentsFromRoute:route];
-    
-    NSInteger index = 0;
-    NSMutableDictionary *subRoutes = self.routes;
-    while (index < pathComponents.count) {
-        NSString *pathComponent = pathComponents[index];
-        if (![subRoutes objectForKey:pathComponent]) {
-            subRoutes[pathComponent] = [[NSMutableDictionary alloc] init];
-        }
-        subRoutes = subRoutes[pathComponent];
-        index++;
-    }
-    return subRoutes;
-}
-
-- (void)map:(NSString *)route toControllerClass:(Class)controllerClass
-{
-    NSMutableDictionary *subRoutes = [self subRoutesToRoute:route];
-    subRoutes[@"_"] = controllerClass;
-}
-
 - (void)map:(NSString *)route toBlock:(HHRouterBlock)block
 {
     NSMutableDictionary *subRoutes = [self subRoutesToRoute:route];
     subRoutes[@"_"] = [block copy];
 }
 
-- (UIViewController *)match:(NSString *)route
+- (UIViewController *)matchController:(NSString *)route
 {
     NSDictionary *params = [self paramsInRoute:route];
     Class controllerClass = params[@"controller_class"];
@@ -79,6 +56,11 @@
         [viewController performSelector:@selector(setParams:) withObject:[params copy]];
     }
     return viewController;
+}
+
+- (UIViewController *)match:(NSString *)route
+{
+    return [self matchController:route];
 }
 
 - (HHRouterBlock)matchBlock:(NSString *)route
@@ -206,4 +188,26 @@
     return [appUrlSchemes copy];
 }
 
+- (NSMutableDictionary*)subRoutesToRoute:(NSString*)route
+{
+    NSArray *pathComponents = [self pathComponentsFromRoute:route];
+    
+    NSInteger index = 0;
+    NSMutableDictionary *subRoutes = self.routes;
+    while (index < pathComponents.count) {
+        NSString *pathComponent = pathComponents[index];
+        if (![subRoutes objectForKey:pathComponent]) {
+            subRoutes[pathComponent] = [[NSMutableDictionary alloc] init];
+        }
+        subRoutes = subRoutes[pathComponent];
+        index++;
+    }
+    return subRoutes;
+}
+
+- (void)map:(NSString *)route toControllerClass:(Class)controllerClass
+{
+    NSMutableDictionary *subRoutes = [self subRoutesToRoute:route];
+    subRoutes[@"_"] = controllerClass;
+}
 @end
