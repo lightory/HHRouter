@@ -11,6 +11,7 @@
 #import "UserViewController.h"
 #import "StoryViewController.h"
 #import "StoryListViewController.h"
+#define TIME_OUT 5
 
 @interface HHRouterTests : XCTestCase
 
@@ -36,13 +37,20 @@
 
 - (void)testRouteBlocks
 {
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
     [[HHRouter shared]map:@"/user/add/" toBlock:^id(NSDictionary *parms) {
         XCTAssertEqualObjects(parms[@"a"], @"1");
         XCTAssertEqualObjects(parms[@"b"], @"2");
+        dispatch_semaphore_signal(semaphore);
     }];
+    
     HHRouterBlock block = [[HHRouter shared]matchBlock:@"/user/add/?a=1&b=2"];
     XCTAssertNotNil(block);
     block(nil);
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+        [[NSRunLoop currentRunLoop]runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:TIME_OUT]];
+    }
     [[HHRouter shared]callBlock:@"/user/add/?a=1&b=2"];
 }
 
