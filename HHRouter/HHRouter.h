@@ -20,9 +20,15 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-
+typedef id(^HHRouterBlock) (NSDictionary *parms);
 @interface HHRouter : NSObject
 + (instancetype)shared;
+
 - (void)map:(NSString *)route toControllerClass:(Class)controllerClass;
-- (UIViewController *)match:(NSString *)route;
+- (UIViewController *)match:(NSString *)route __attribute__((deprecated));
+- (UIViewController *)matchController:(NSString*)route;
+
+- (void)map:(NSString *)route toBlock:(HHRouterBlock)block;
+- (HHRouterBlock)matchBlock:(NSString*)route;
+- (id)callBlock:(NSString*)route;
 @end

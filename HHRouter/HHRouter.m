@@ -20,6 +20,7 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import "HHRouter.h"
+#import <objc/runtime.h>
 
 @interface HHRouter ()
 @property (strong, nonatomic) NSMutableDictionary *routes;
@@ -39,24 +40,54 @@
     return router;
 }
 
-- (void)map:(NSString *)route toControllerClass:(Class)controllerClass
+- (void)map:(NSString *)route toBlock:(HHRouterBlock)block
 {
-    NSArray *pathComponents = [self pathComponentsFromRoute:route];
+    NSMutableDictionary *subRoutes = [self subRoutesToRoute:route];
+    subRoutes[@"_"] = [block copy];
+}
+
+- (UIViewController *)matchController:(NSString *)route
+{
+    NSDictionary *params = [self paramsInRoute:route];
+    Class controllerClass = params[@"controller_class"];
     
-    NSInteger index = 0;
-    NSMutableDictionary *subRoutes = self.routes;
-    while (index < pathComponents.count) {
-        NSString *pathComponent = pathComponents[index];
-        if (![subRoutes objectForKey:pathComponent]) {
-            subRoutes[pathComponent] = [[NSMutableDictionary alloc] init];
-        }
-        subRoutes = subRoutes[pathComponent];
-        index++;
+    UIViewController *viewController = [[controllerClass alloc] init];
+    if ([viewController respondsToSelector:@selector(setParams:)]) {
+        [viewController performSelector:@selector(setParams:) withObject:[params copy]];
     }
-    subRoutes[@"_"] = controllerClass;
+    return viewController;
 }
 
 - (UIViewController *)match:(NSString *)route
+{
+    return [self matchController:route];
+}
+
+- (HHRouterBlock)matchBlock:(NSString *)route
+{
+    NSDictionary *params = [self paramsInRoute:route];
+    HHRouterBlock routerBlock = [params[@"block"] copy];
+    HHRouterBlock returnBlock = ^id(NSDictionary *aParams){
+        if (routerBlock) {
+            return routerBlock([params copy]);
+        }
+        return nil;
+    };
+    return [returnBlock copy];
+}
+
+- (id)callBlock:(NSString *)route
+{
+    NSDictionary *params = [self paramsInRoute:route];
+    HHRouterBlock routerBlock = [params[@"block"] copy];
+    if (routerBlock) {
+        return routerBlock([params copy]);
+    }
+    return nil;
+}
+
+//extract params in a route
+- (NSDictionary*)paramsInRoute:(NSString*)route
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"route"] = [self stringFromFilterAppUrlScheme:route];
@@ -95,13 +126,20 @@
             }
         }
     }
-    
-    Class controllerClass = subRoutes[@"_"];
-    UIViewController *viewController = [[controllerClass alloc] init];
-    if ([viewController respondsToSelector:@selector(setParams:)]) {
-        [viewController performSelector:@selector(setParams:) withObject:[params copy]];
+    Class class = subRoutes[@"_"];
+    if (class_isMetaClass(object_getClass(class))) {
+        if ([class isSubclassOfClass:[UIViewController class]]) {
+            params[@"controller_class"] = subRoutes[@"_"];
+        } else {
+            return nil;
+        }
+    } else {
+        if (subRoutes[@"_"]) {
+            params[@"block"] = [subRoutes[@"_"] copy];
+        }
     }
-    return viewController;
+    
+    return [NSDictionary dictionaryWithDictionary:params];
 }
 
 #pragma mark - Private
@@ -150,4 +188,26 @@
     return [appUrlSchemes copy];
 }
 
+- (NSMutableDictionary*)subRoutesToRoute:(NSString*)route
+{
+    NSArray *pathComponents = [self pathComponentsFromRoute:route];
+    
+    NSInteger index = 0;
+    NSMutableDictionary *subRoutes = self.routes;
+    while (index < pathComponents.count) {
+        NSString *pathComponent = pathComponents[index];
+        if (![subRoutes objectForKey:pathComponent]) {
+            subRoutes[pathComponent] = [[NSMutableDictionary alloc] init];
+        }
+        subRoutes = subRoutes[pathComponent];
+        index++;
+    }
+    return subRoutes;
+}
+
+- (void)map:(NSString *)route toControllerClass:(Class)controllerClass
+{
+    NSMutableDictionary *subRoutes = [self subRoutesToRoute:route];
+    subRoutes[@"_"] = controllerClass;
+}
 @end
