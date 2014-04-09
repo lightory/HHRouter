@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UserViewController : UIViewController
-@property (strong, nonatomic) NSDictionary *params;
+
 @end
