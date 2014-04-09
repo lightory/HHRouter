@@ -13,6 +13,7 @@ Map URL patterns to viewController. Better in AppDelegate.
 
 ```objective-c
 [[HHRouter shared] map:@"/user/:userId/" toControllerClass:[UserViewController class]];
+```
 
 ### Exciting Time
 Get viewController instance from URL. Params will be parsed automatically.
