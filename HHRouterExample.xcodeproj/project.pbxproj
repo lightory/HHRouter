@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A02D396618D1B21F00291FE9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A02D396518D1B21F00291FE9 /* Foundation.framework */; };
-		A02D396818D1B21F00291FE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A02D396718D1B21F00291FE9 /* CoreGraphics.framework */; };
 		A02D396A18D1B21F00291FE9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A02D396918D1B21F00291FE9 /* UIKit.framework */; };
 		A02D397018D1B21F00291FE9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A02D396E18D1B21F00291FE9 /* InfoPlist.strings */; };
 		A02D397218D1B21F00291FE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D397118D1B21F00291FE9 /* main.m */; };
@@ -42,7 +41,6 @@
 /* Begin PBXFileReference section */
 		A02D396218D1B21F00291FE9 /* HHRouterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HHRouterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A02D396518D1B21F00291FE9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A02D396718D1B21F00291FE9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A02D396918D1B21F00291FE9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A02D396D18D1B21F00291FE9 /* HHRouterExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HHRouterExample-Info.plist"; sourceTree = "<group>"; };
 		A02D396F18D1B21F00291FE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -71,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A02D396818D1B21F00291FE9 /* CoreGraphics.framework in Frameworks */,
 				A02D396A18D1B21F00291FE9 /* UIKit.framework in Frameworks */,
 				A02D396618D1B21F00291FE9 /* Foundation.framework in Frameworks */,
 			);
@@ -114,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				A02D396518D1B21F00291FE9 /* Foundation.framework */,
-				A02D396718D1B21F00291FE9 /* CoreGraphics.framework */,
 				A02D396918D1B21F00291FE9 /* UIKit.framework */,
 				A02D397E18D1B21F00291FE9 /* XCTest.framework */,
 			);
