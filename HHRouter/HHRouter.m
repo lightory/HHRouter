@@ -51,7 +51,6 @@
 
 - (UIViewController*)matchController:(NSString*)route
 {
-	NSLog(@"%@", route);
     NSDictionary* params = [self paramsInRoute:route];
     Class controllerClass = params[@"controller_class"];
 
