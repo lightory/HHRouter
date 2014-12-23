@@ -167,7 +167,7 @@
 - (NSArray*)pathComponentsFromRoute:(NSString*)route
 {
     NSMutableArray *pathComponents = [NSMutableArray array];
-    for (NSString *pathComponent in [[NSURL URLWithString:route] pathComponents]) {
+    for (NSString *pathComponent in route.pathComponents) {
         if ([pathComponent isEqualToString:@"/"]) continue;
         if ([[pathComponent substringToIndex:1] isEqualToString:@"?"]) break;
         [pathComponents addObject:pathComponent];
@@ -246,3 +246,4 @@ static char kAssociatedParamsObjectKey;
 }
 
 @end
+
