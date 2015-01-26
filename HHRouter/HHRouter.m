@@ -125,9 +125,9 @@
     }
 
     // Extract Params From Query.
-    NSArray* pathInfo = [route componentsSeparatedByString:@"?"];
-    if (pathInfo.count > 1) {
-        NSString* paramsString = [pathInfo objectAtIndex:1];
+    NSRange firstRange = [route rangeOfString:@"?"];
+    if (firstRange.location != NSNotFound && route.length > firstRange.location + firstRange.length) {
+        NSString* paramsString = [route substringFromIndex:firstRange.location + firstRange.length];
         NSArray* paramStringArr = [paramsString componentsSeparatedByString:@"&"];
         for (NSString* paramString in paramStringArr) {
             NSArray* paramArr = [paramString componentsSeparatedByString:@"="];
@@ -138,6 +138,7 @@
             }
         }
     }
+    
     Class class = subRoutes[@"_"];
     if (class_isMetaClass(object_getClass(class))) {
         if ([class isSubclassOfClass:[UIViewController class]]) {
