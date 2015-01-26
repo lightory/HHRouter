@@ -66,7 +66,7 @@ pod 'HHRouter', '~> 0.1'
 If you're not able to use CocoaPods, please install HHRouter as a [git submodule](http://schacon.github.com/git/user-manual.html#submodules) and add the files to your Xcode project.
 
 ## We're Hiring!
-[http://huohua.in/opportunity/](http://huohua.in/opportunity/)
+[http://pudding.cc/opportunity/](http://pudding.cc/opportunity/)
 
 ## Contact
 - [lightory@gmail.com](mailto:lightory@gmail.com)
@@ -75,7 +75,8 @@ If you're not able to use CocoaPods, please install HHRouter as a [git submodule
 ## Who use HHRouter?
 If you're building your applications using HHRouter, please let me know! (add your application name & App Store link here and pull reuqest this README.
 
-- 火花: [https://itunes.apple.com/cn/app/huo-hua-dian-shi-ju/id584296227?mt=8](https://itunes.apple.com/cn/app/huo-hua-dian-shi-ju/id584296227?mt=8)
+- 布丁动画: [https://itunes.apple.com/cn/app/bu-ding-dong-hua-zui-liang/id869243194?l=zh&ls=1&mt=8](https://itunes.apple.com/cn/app/bu-ding-dong-hua-zui-liang/id869243194?l=zh&ls=1&mt=8)
+
 
 ## License
 HHRouter is available under the [MIT license](https://github.com/Huohua/HHRouter/blob/master/LICENSE).
