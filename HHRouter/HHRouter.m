@@ -167,8 +167,11 @@
 
 - (NSArray*)pathComponentsFromRoute:(NSString*)route
 {
+    if([[route substringToIndex:2] isEqualToString:@"//"]) {
+        route = [route substringFromIndex:1];
+    }
     NSMutableArray *pathComponents = [NSMutableArray array];
-    for (NSString *pathComponent in route.pathComponents) {
+    for (NSString *pathComponent in [[NSURL URLWithString:route] pathComponents]) {
         if ([pathComponent isEqualToString:@"/"]) continue;
         if ([[pathComponent substringToIndex:1] isEqualToString:@"?"]) break;
         [pathComponents addObject:pathComponent];
