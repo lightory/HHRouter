@@ -56,7 +56,7 @@ XCTAssertEqualObjects([viewController class], [UserViewController class]);
 ### [CocoaPods](http://cocoapods.org/)
 
 ```ruby
-pod 'HHRouter', '~> 0.1'
+pod 'HHRouter', '~> 0.1.4'
 ```
 
 ```objective-c
