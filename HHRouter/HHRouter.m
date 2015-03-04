@@ -103,14 +103,14 @@
 
     NSMutableDictionary* subRoutes = self.routes;
     NSArray* pathComponents =
-        [self pathComponentsFromRoute:[self stringFromFilterAppUrlScheme:route]];
+    [self pathComponentsFromRoute:[self stringFromFilterAppUrlScheme:route]];
     for (NSString* pathComponent in pathComponents) {
         BOOL found = NO;
         NSArray* subRoutesKeys = subRoutes.allKeys;
         for (NSString* key in subRoutesKeys) {
-            if ([key isEqualToString:pathComponent]) {
+            if ([subRoutesKeys containsObject:pathComponent]) {
                 found = YES;
-                subRoutes = subRoutes[key];
+                subRoutes = subRoutes[pathComponent];
                 break;
             } else if ([key hasPrefix:@":"]) {
                 found = YES;
