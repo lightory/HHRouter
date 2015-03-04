@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  version        = "0.1.3"
+  version        = "0.1.4"
   s.name         = "HHRouter"
   s.version      = version
   s.summary      = "Yet another URL Router for iOS."
