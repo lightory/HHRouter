@@ -72,15 +72,16 @@
 {
     NSDictionary* params = [self paramsInRoute:route];
     HHRouterBlock routerBlock = [params[@"block"] copy];
-    HHRouterBlock returnBlock = ^id(NSDictionary* aParams)
-    {
+    HHRouterBlock returnBlock = ^id(NSDictionary* aParams) {
         if (routerBlock) {
-            return routerBlock([params copy]);
-        }
-        return nil;
-    };
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:params];
+            [dic addEntriesFromDictionary:aParams];
+            return routerBlock([NSDictionary dictionaryWithDictionary:dic].copy);
+    }
+    return nil;
+  };
 
-    return [returnBlock copy];
+  return [returnBlock copy];
 }
 
 - (id)callBlock:(NSString*)route
@@ -247,4 +248,3 @@ static char kAssociatedParamsObjectKey;
 }
 
 @end
-
