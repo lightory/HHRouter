@@ -181,7 +181,7 @@
     // filter out the app URL compontents.
     for (NSString* appUrlScheme in [self appUrlSchemes]) {
         if ([string hasPrefix:[NSString stringWithFormat:@"%@:", appUrlScheme]]) {
-            return [string substringFromIndex:appUrlScheme.length + 1];
+            return [string substringFromIndex:appUrlScheme.length + 2];
         }
     }
 
