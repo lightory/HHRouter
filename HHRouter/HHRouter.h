@@ -26,19 +26,19 @@
 /// @name HHRouter
 ///---------------
 
-typedef id (^HHRouterBlock)(NSDictionary* params);
+typedef id (^HHRouterBlock)(NSDictionary *params);
 
 @interface HHRouter : NSObject
 
 + (instancetype)shared;
 
-- (void)map:(NSString*)route toControllerClass:(Class)controllerClass;
-- (UIViewController*)match:(NSString*)route __attribute__((deprecated));
-- (UIViewController*)matchController:(NSString*)route;
+- (void)map:(NSString *)route toControllerClass:(Class)controllerClass;
+- (UIViewController *)match:(NSString *)route __attribute__((deprecated));
+- (UIViewController *)matchController:(NSString *)route;
 
-- (void)map:(NSString*)route toBlock:(HHRouterBlock)block;
-- (HHRouterBlock)matchBlock:(NSString*)route;
-- (id)callBlock:(NSString*)route;
+- (void)map:(NSString *)route toBlock:(HHRouterBlock)block;
+- (HHRouterBlock)matchBlock:(NSString *)route;
+- (id)callBlock:(NSString *)route;
 
 @end
 
@@ -48,6 +48,6 @@ typedef id (^HHRouterBlock)(NSDictionary* params);
 
 @interface UIViewController (HHRouter)
 
-@property (nonatomic, strong) NSDictionary* params;
+@property (nonatomic, strong) NSDictionary *params;
 
 @end
