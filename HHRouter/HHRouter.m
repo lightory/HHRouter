@@ -24,27 +24,27 @@
 #import <objc/runtime.h>
 
 @interface HHRouter ()
-@property (strong, nonatomic) NSMutableDictionary* routes;
+@property (strong, nonatomic) NSMutableDictionary *routes;
 @end
 
 @implementation HHRouter
 
 + (instancetype)shared
 {
-    static HHRouter* router = nil;
+    static HHRouter *router = nil;
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-      if (!router) {
-        router = [[self alloc] init];
-      }
+        if (!router) {
+            router = [[self alloc] init];
+        }
     });
     return router;
 }
 
-- (void)map:(NSString*)route toBlock:(HHRouterBlock)block
+- (void)map:(NSString *)route toBlock:(HHRouterBlock)block
 {
-    NSMutableDictionary* subRoutes = [self subRoutesToRoute:route];
+    NSMutableDictionary *subRoutes = [self subRoutesToRoute:route];
 
     subRoutes[@"_"] = [block copy];
 }
@@ -63,7 +63,7 @@
     return viewController;
 }
 
-- (UIViewController*)match:(NSString*)route
+- (UIViewController *)match:(NSString *)route
 {
     return [self matchController:route];
 }
@@ -72,7 +72,7 @@
 {
     NSDictionary *params = [self paramsInRoute:route];
     HHRouterBlock routerBlock = [params[@"block"] copy];
-    HHRouterBlock returnBlock = ^id(NSDictionary* aParams) {
+    HHRouterBlock returnBlock = ^id(NSDictionary *aParams) {
         if (routerBlock) {
             NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:params];
             [dic addEntriesFromDictionary:aParams];
@@ -86,7 +86,7 @@
 
 - (id)callBlock:(NSString *)route
 {
-    NSDictionary* params = [self paramsInRoute:route];
+    NSDictionary *params = [self paramsInRoute:route];
     HHRouterBlock routerBlock = [params[@"block"] copy];
 
     if (routerBlock) {
@@ -98,13 +98,12 @@
 // extract params in a route
 - (NSDictionary *)paramsInRoute:(NSString *)route
 {
-    NSMutableDictionary* params = [NSMutableDictionary dictionary];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
     params[@"route"] = [self stringFromFilterAppUrlScheme:route];
 
     NSMutableDictionary *subRoutes = self.routes;
-    NSArray *pathComponents =
-    [self pathComponentsFromRoute:[self stringFromFilterAppUrlScheme:route]];
+    NSArray *pathComponents = [self pathComponentsFromRoute:[self stringFromFilterAppUrlScheme:route]];
     for (NSString *pathComponent in pathComponents) {
         BOOL found = NO;
         NSArray *subRoutesKeys = subRoutes.allKeys;
@@ -128,13 +127,13 @@
     // Extract Params From Query.
     NSRange firstRange = [route rangeOfString:@"?"];
     if (firstRange.location != NSNotFound && route.length > firstRange.location + firstRange.length) {
-        NSString* paramsString = [route substringFromIndex:firstRange.location + firstRange.length];
-        NSArray* paramStringArr = [paramsString componentsSeparatedByString:@"&"];
+        NSString *paramsString = [route substringFromIndex:firstRange.location + firstRange.length];
+        NSArray *paramStringArr = [paramsString componentsSeparatedByString:@"&"];
         for (NSString *paramString in paramStringArr) {
             NSArray *paramArr = [paramString componentsSeparatedByString:@"="];
             if (paramArr.count > 1) {
-                NSString* key = [paramArr objectAtIndex:0];
-                NSString* value = [paramArr objectAtIndex:1];
+                NSString *key = [paramArr objectAtIndex:0];
+                NSString *value = [paramArr objectAtIndex:1];
                 params[key] = value;
             }
         }
@@ -241,8 +240,7 @@ static char kAssociatedParamsObjectKey;
 
 - (void)setParams:(NSDictionary *)paramsDictionary
 {
-    objc_setAssociatedObject(self, &kAssociatedParamsObjectKey, paramsDictionary,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kAssociatedParamsObjectKey, paramsDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSDictionary *)params
