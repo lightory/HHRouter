@@ -26,6 +26,12 @@
 /// @name HHRouter
 ///---------------
 
+typedef NS_ENUM (NSInteger, HHRouteType) {
+    HHRouteTypeNone = 0,
+    HHRouteTypeViewController = 1,
+    HHRouteTypeBlock = 2
+};
+
 typedef id (^HHRouterBlock)(NSDictionary *params);
 
 @interface HHRouter : NSObject
@@ -39,6 +45,8 @@ typedef id (^HHRouterBlock)(NSDictionary *params);
 - (void)map:(NSString *)route toBlock:(HHRouterBlock)block;
 - (HHRouterBlock)matchBlock:(NSString *)route;
 - (id)callBlock:(NSString *)route;
+
+- (HHRouteType)canRoute:(NSString *)route;
 
 @end
 

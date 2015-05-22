@@ -230,6 +230,21 @@
     subRoutes[@"_"] = controllerClass;
 }
 
+- (HHRouteType)canRoute:(NSString *)route
+{
+    NSDictionary *params = [self paramsInRoute:route];
+    
+    if (params[@"controller_class"]) {
+        return HHRouteTypeViewController;
+    }
+    
+    if (params[@"block"]) {
+        return HHRouteTypeBlock;
+    }
+    
+    return HHRouteTypeNone;
+}
+
 @end
 
 #pragma mark - UIViewController Category
