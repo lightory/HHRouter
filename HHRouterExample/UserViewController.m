@@ -7,6 +7,7 @@
 //
 
 #import "UserViewController.h"
+#import "HHRouter.h"
 
 @interface UserViewController ()
 
@@ -26,7 +27,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    NSString *userId = self.params[@"userId"];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(80, 120, 200, 40)];
+    label.text = [NSString stringWithFormat:@"UserID: %@", userId];
+    
+    UIView *containerView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    containerView.backgroundColor = [UIColor whiteColor];
+    [containerView addSubview:label];
+    
+    [self.view addSubview:containerView];
 }
 
 - (void)didReceiveMemoryWarning

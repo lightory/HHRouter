@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D7CFE471BB51876000F3AD8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D7CFE461BB51876000F3AD8 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		2D7CFE4A1BB52D10000F3AD8 /* FrontPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7CFE491BB52D10000F3AD8 /* FrontPageViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A02D396618D1B21F00291FE9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A02D396518D1B21F00291FE9 /* Foundation.framework */; };
 		A02D396A18D1B21F00291FE9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A02D396918D1B21F00291FE9 /* UIKit.framework */; };
 		A02D397018D1B21F00291FE9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A02D396E18D1B21F00291FE9 /* InfoPlist.strings */; };
@@ -39,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D7CFE461BB51876000F3AD8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../Launch Screen.storyboard"; sourceTree = "<group>"; };
+		2D7CFE481BB52D10000F3AD8 /* FrontPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontPageViewController.h; sourceTree = "<group>"; };
+		2D7CFE491BB52D10000F3AD8 /* FrontPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontPageViewController.m; sourceTree = "<group>"; };
 		A02D396218D1B21F00291FE9 /* HHRouterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HHRouterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A02D396518D1B21F00291FE9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A02D396918D1B21F00291FE9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -123,6 +128,7 @@
 				A02D397418D1B21F00291FE9 /* AppDelegate.h */,
 				A02D397518D1B21F00291FE9 /* AppDelegate.m */,
 				A02D397718D1B21F00291FE9 /* Images.xcassets */,
+				2D7CFE461BB51876000F3AD8 /* Launch Screen.storyboard */,
 				A02D396C18D1B21F00291FE9 /* Supporting Files */,
 				A02D399C18D2D9F100291FE9 /* UserViewController.h */,
 				A02D399D18D2D9F100291FE9 /* UserViewController.m */,
@@ -130,6 +136,8 @@
 				A02D39A118D2DA0200291FE9 /* StoryViewController.m */,
 				A02D39A418D2DA3F00291FE9 /* StoryListViewController.h */,
 				A02D39A518D2DA3F00291FE9 /* StoryListViewController.m */,
+				2D7CFE481BB52D10000F3AD8 /* FrontPageViewController.h */,
+				2D7CFE491BB52D10000F3AD8 /* FrontPageViewController.m */,
 			);
 			path = HHRouterExample;
 			sourceTree = "<group>";
@@ -247,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D7CFE471BB51876000F3AD8 /* Launch Screen.storyboard in Resources */,
 				A02D397018D1B21F00291FE9 /* InfoPlist.strings in Resources */,
 				A02D397818D1B21F00291FE9 /* Images.xcassets in Resources */,
 			);
@@ -267,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D7CFE4A1BB52D10000F3AD8 /* FrontPageViewController.m in Sources */,
 				A02D397618D1B21F00291FE9 /* AppDelegate.m in Sources */,
 				A02D399E18D2D9F100291FE9 /* UserViewController.m in Sources */,
 				A02D39A618D2DA3F00291FE9 /* StoryListViewController.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "HHRouter.h"
+#import "UserViewController.h"
+#import "FrontPageViewController.h"
 
 @implementation AppDelegate
 
@@ -15,8 +17,14 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[UIViewController alloc] init];
+    FrontPageViewController *rootViewController = [[FrontPageViewController alloc] init];
+    UINavigationController *navigationViewController = [[UINavigationController alloc]initWithRootViewController:rootViewController];
+    self.window.rootViewController = navigationViewController;
     [self.window makeKeyAndVisible];
+    
+    [[HHRouter shared] map:@"/user/:userId/"
+         toControllerClass:[UserViewController class]];
+    
     return YES;
 }
 
