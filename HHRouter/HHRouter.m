@@ -99,11 +99,13 @@
 - (NSDictionary *)paramsInRoute:(NSString *)route
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-
-    params[@"route"] = [self stringFromFilterAppUrlScheme:route];
+    NSArray<NSString *> *urlComponents = [[self stringFromFilterAppUrlScheme:route] componentsSeparatedByString:@"?"];
+    NSString *routeString = urlComponents[0];
+    params[@"route"] = routeString;
 
     NSMutableDictionary *subRoutes = self.routes;
-    NSArray *pathComponents = [self pathComponentsFromRoute:[self stringFromFilterAppUrlScheme:route]];
+    NSArray *pathComponents =
+    [self pathComponentsFromRoute:routeString];
     for (NSString *pathComponent in pathComponents) {
         BOOL found = NO;
         NSArray *subRoutesKeys = subRoutes.allKeys;
