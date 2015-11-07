@@ -104,8 +104,7 @@
     params[@"route"] = routeString;
 
     NSMutableDictionary *subRoutes = self.routes;
-    NSArray *pathComponents =
-    [self pathComponentsFromRoute:routeString];
+    NSArray *pathComponents = [self pathComponentsFromRoute:routeString];
     for (NSString *pathComponent in pathComponents) {
         BOOL found = NO;
         NSArray *subRoutesKeys = subRoutes.allKeys;
