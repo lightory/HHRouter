@@ -71,6 +71,11 @@
 - (HHRouterBlock)matchBlock:(NSString *)route
 {
     NSDictionary *params = [self paramsInRoute:route];
+    
+    if (!params){
+    return nil;
+    }
+    
     HHRouterBlock routerBlock = [params[@"block"] copy];
     HHRouterBlock returnBlock = ^id(NSDictionary *aParams) {
         if (routerBlock) {
