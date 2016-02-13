@@ -1,7 +1,7 @@
 HHRouter
 =====
 [![Build Status](https://travis-ci.org/Huohua/HHRouter.png)](https://travis-ci.org/Huohua/HHRouter)
-[![Cocoapods](https://cocoapod-badges.herokuapp.com/v/HHRouter/badge.png)](http://cocoapods.org/?q=HHRouter)
+[![CocoaPods](https://cocoapod-badges.herokuapp.com/v/HHRouter/badge.png)](http://cocoapods.org/?q=HHRouter)
 
 Yet another URL Router for iOS. Clean, Fast & Flexible. Inspired by [ABRouter](https://github.com/aaronbrethorst/ABRouter) & [Routable iOS](https://github.com/usepropeller/routable-ios).
 
