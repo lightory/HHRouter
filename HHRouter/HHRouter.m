@@ -108,7 +108,7 @@
     params[@"route"] = [self stringFromFilterAppUrlScheme:route];
 
     NSMutableDictionary *subRoutes = self.routes;
-    NSArray *pathComponents = [self pathComponentsFromRoute:[self stringFromFilterAppUrlScheme:route]];
+    NSArray *pathComponents = [self pathComponentsFromRoute:params[@"route"]];
     for (NSString *pathComponent in pathComponents) {
         BOOL found = NO;
         NSArray *subRoutesKeys = subRoutes.allKeys;
@@ -174,7 +174,7 @@
 - (NSArray *)pathComponentsFromRoute:(NSString *)route
 {
     NSMutableArray *pathComponents = [NSMutableArray array];
-    for (NSString *pathComponent in route.pathComponents) {
+    for (NSString *pathComponent in [NSURL URLWithString:route].path.pathComponents) {
         if ([pathComponent isEqualToString:@"/"]) continue;
         if ([[pathComponent substringToIndex:1] isEqualToString:@"?"]) break;
         [pathComponents addObject:pathComponent];
