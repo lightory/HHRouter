@@ -174,7 +174,9 @@
 - (NSArray *)pathComponentsFromRoute:(NSString *)route
 {
     NSMutableArray *pathComponents = [NSMutableArray array];
-    for (NSString *pathComponent in [NSURL URLWithString:[route stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]].path.pathComponents) {
+    NSURL *url = [NSURL URLWithString:[route stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    for (NSString *pathComponent in url.path.pathComponents) {
         if ([pathComponent isEqualToString:@"/"]) continue;
         if ([[pathComponent substringToIndex:1] isEqualToString:@"?"]) break;
         [pathComponents addObject:[pathComponent stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
