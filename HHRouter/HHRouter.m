@@ -108,7 +108,7 @@ const static NSString *HHRouterHost = @"HHRouterHost";
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
-    params[@"route"] = [self stringFromFilterAppUrlScheme:route];
+    params[@"route"] = route;
 
     NSMutableDictionary *subRoutes = self.routes;
     NSArray *pathComponents = [self pathComponentsFromRoute:params[@"route"]];
@@ -189,18 +189,6 @@ const static NSString *HHRouterHost = @"HHRouterHost";
     }
     
     return [pathComponents copy];
-}
-
-- (NSString *)stringFromFilterAppUrlScheme:(NSString *)string
-{
-    // filter out the app URL compontents.
-    for (NSString *appUrlScheme in [self appUrlSchemes]) {
-        if ([string hasPrefix:[NSString stringWithFormat:@"%@:", appUrlScheme]]) {
-            return [string substringFromIndex:appUrlScheme.length + 2];
-        }
-    }
-
-    return string;
 }
 
 - (NSArray *)appUrlSchemes
