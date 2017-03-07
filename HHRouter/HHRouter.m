@@ -23,6 +23,9 @@
 #import "HHRouter.h"
 #import <objc/runtime.h>
 
+const static NSString *HHRouterScheme = @"HHRouterScheme";
+const static NSString *HHRouterHost = @"HHRouterHost";
+
 @interface HHRouter ()
 @property (strong, nonatomic) NSMutableDictionary *routes;
 @end
@@ -174,8 +177,11 @@
 - (NSArray *)pathComponentsFromRoute:(NSString *)route
 {
     NSMutableArray *pathComponents = [NSMutableArray array];
+    NSURLComponents *urlComponents =  [NSURLComponents componentsWithString:[route stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSURL *url = [NSURL URLWithString:[route stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
+    [pathComponents addObject:urlComponents.scheme ?: HHRouterScheme];
+    [pathComponents addObject:urlComponents.host ?: HHRouterHost];
     for (NSString *pathComponent in url.path.pathComponents) {
         if ([pathComponent isEqualToString:@"/"]) continue;
         if ([[pathComponent substringToIndex:1] isEqualToString:@"?"]) break;
